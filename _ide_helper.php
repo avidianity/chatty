@@ -16476,6 +16476,28 @@
      
 }
 
+    namespace Illuminate\Database\Eloquent\Factories { 
+            /**
+     * 
+     *
+     */ 
+        class Factory {
+                    /**
+         * Create fake data for the model
+         *
+         * @return array 
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @static 
+         */ 
+        public static function data()
+        {
+                        return \Illuminate\Database\Eloquent\Factories\Factory::data();
+        }
+         
+    }
+     
+}
+
 
 namespace  { 
             class App extends \Illuminate\Support\Facades\App {}

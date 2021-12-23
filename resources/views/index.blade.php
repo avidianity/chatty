@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <title>Chatty | Chat with your Friends</title>
+    <title>Chatty | Chat with your friends</title>
 </head>
 
 <body>

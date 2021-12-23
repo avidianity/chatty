@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'gender' => ['nullable', 'string', Rule::in(User::GENDERS)],
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', Rule::unique(User::class)],
             'email' => ['required', 'email', 'max:255', Rule::unique(User::class)],
             'picture' => ['nullable', 'file'],
             'password' => ['required', 'string', 'min:6'],

@@ -21,6 +21,9 @@ Route::prefix('auth')
         Route::post('register', [AuthController::class, 'register'])->name('register');
 
         Route::middleware('auth:sanctum')
-            ->get('check', [AuthController::class, 'check'])
-            ->name('check');
+            ->group(function () {
+                Route::get('check', [AuthController::class, 'check'])->name('check');
+                Route::put('update', [AuthController::class, 'update'])->name('update');
+                Route::patch('update', [AuthController::class, 'update'])->name('update');
+            });
     });

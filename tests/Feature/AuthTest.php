@@ -37,7 +37,7 @@ class AuthTest extends TestCase
      */
     public function it_registers_a_user()
     {
-        $data = User::factory()->make()->toArray();
+        $data = User::factory()->data();
 
         $data['password'] = $this->faker->password;
 
@@ -78,5 +78,16 @@ class AuthTest extends TestCase
 
         $this->getJson($route)
             ->assertRedirect(url('/login/verified'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_updates_self()
+    {
+        $this->actAs();
+
+        $this->putJson(route('auth.update'), User::factory()->data())
+            ->assertOk();
     }
 }

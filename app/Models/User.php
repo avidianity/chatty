@@ -51,8 +51,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => Hash::class,
     ];
 
+    public function isRelatedToFriend(Friend $friend)
+    {
+        return $friend->user_id === $this->id || $friend->parent_id === $this->id;
+    }
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail($this));
+    }
+
+    public function friends()
+    {
+        return $this->hasMany(Friend::class, 'parent_id');
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(Friend::class);
     }
 }

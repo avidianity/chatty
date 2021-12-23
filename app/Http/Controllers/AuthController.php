@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateSelfRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -50,6 +51,15 @@ class AuthController extends Controller
         $user = User::create($data);
 
         event(new Registered($user));
+
+        return $user;
+    }
+
+    public function update(UpdateSelfRequest $request)
+    {
+        $user = $request->user();
+
+        $user->update($request->validated());
 
         return $user;
     }

@@ -15,12 +15,13 @@ const App: FC<Props> = (props) => {
     const [token, setToken] = useToken();
 
     const getCookie = async () => {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         await axios.get('/sanctum/csrf-cookie').catch(console.error);
     };
 
     const validateToken = async (token: string) => {
         try {
-            await axios.get('/api/auth/check', {
+            const { data: user } = await axios.get('/api/auth/check', {
                 headers: { Authorization: `Bearer ${token}` },
             });
         } catch (error) {
