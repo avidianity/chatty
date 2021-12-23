@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "line-awesome/dist/line-awesome/css/line-awesome.css";
+@import "@fontsource/lato";
+@import "@fontsource/lato/100.css";
+@import "@fontsource/lato/300.css";
+@import "@fontsource/lato/700.css";
+@import "@fontsource/lato/900.css";
+
+body {
+    font-family: "Lato";
+}
