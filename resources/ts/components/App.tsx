@@ -1,4 +1,4 @@
-import { useLocalStorage, useToggle } from '@avidian/hooks';
+import { useToggle } from '@avidian/hooks';
 import axios, { AxiosError } from 'axios';
 import React, { FC, useEffect } from 'react';
 import Loading from './Shared/Loading';
