@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFriendRequest;
 use App\Models\Friend;
-use Request;
+use Illuminate\Http\Request;
 
 class FriendController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Friend::class, 'friend');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +26,10 @@ class FriendController extends Controller
      */
     public function index(Request $request)
     {
-        return $request->user()->friends;
+        return $request->user()
+            ->friends()
+            ->accepted()
+            ->get();
     }
 
     /**

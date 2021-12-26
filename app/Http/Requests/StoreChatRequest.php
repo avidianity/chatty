@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
+use App\Models\Friend;
+use App\Rules\IsRelatedToFriend;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreFriendRequest extends FormRequest
+class StoreChatRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,14 +32,13 @@ class StoreFriendRequest extends FormRequest
         $user = $this->user();
 
         return [
-            'user_id' => [
+            'friend_id' => [
                 'required',
                 'numeric',
-                Rule::exists(User::class, 'id')
-                    ->whereNot('id', $user->id)
-                    ->whereNotIn('id', $user->friends->map->id->toArray())
-                    ->whereNotIn('id', $user->requests->map->id->toArray()),
+                Rule::exists(Friend::class, 'id'),
+                new IsRelatedToFriend($user)
             ],
+            'message' => ['required', 'string', 'min:1']
         ];
     }
 }

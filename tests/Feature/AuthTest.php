@@ -78,6 +78,8 @@ class AuthTest extends TestCase
 
         $this->getJson($route)
             ->assertRedirect(url('/login/verified'));
+
+        $this->assertTrue($user->fresh()->hasVerifiedEmail());
     }
 
     /**

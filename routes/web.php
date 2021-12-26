@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\SPAController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect(url('/login/verified'));
-})->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', [SPAController::class, 'verify'])
+    ->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
 
 Route::fallback(SPAController::class);

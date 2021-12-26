@@ -17,7 +17,21 @@ class Friend extends Model
 
     protected $casts = [
         'accepted' => 'boolean',
+        'parent_id' => 'integer',
+        'user_id' => 'integer',
     ];
+
+    /**
+     * Scope a query to only include either accepted or non-accepted friends.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  bool $value
+     * @return void
+     */
+    public function scopeAccepted($query, $value = true)
+    {
+        return $query->where('accepted', $value);
+    }
 
     public function accept()
     {

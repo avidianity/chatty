@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Chat;
 use App\Models\Friend;
+use App\Policies\ChatPolicy;
 use App\Policies\FriendPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
+        Chat::class => ChatPolicy::class,
         Friend::class => FriendPolicy::class,
     ];
 

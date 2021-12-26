@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\FriendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +29,11 @@ Route::prefix('auth')
                 Route::patch('update', [AuthController::class, 'update'])->name('update');
             });
     });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResources([
+        'friends' => FriendController::class,
+    ]);
+
+    Route::apiResource('chats', ChatController::class)->except('index', 'update');
+});
