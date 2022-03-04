@@ -15,7 +15,6 @@ const App: FC<Props> = (props) => {
     const [token, setToken] = useToken();
 
     const getCookie = async () => {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
         await axios.get('/sanctum/csrf-cookie').catch(console.error);
     };
 
